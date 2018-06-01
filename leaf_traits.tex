@@ -1,0 +1,84 @@
+\tikzset {
+  trait pic/.style = {inner sep = 3pt, outer sep = 3pt, node distance = 1cm},
+  trait label/.style = {above, align = center, inner sep = 5pt, outer sep = 5pt, midway, above, font = \small},
+  trait letter/.style = {inner sep = 5pt, outer sep = 4pt, node distance = 0.7cm},
+  trait sla/.pic = {
+    \node [trait pic] (-SLA 1) {
+      \includegraphics[width=16mm]{\string ~/Pictures/common_figures/thinLeaf.png}
+    };
+    \node [trait pic, inner sep = 5pt] (-SLA 2) [right = of -SLA 1] {
+      \includegraphics[height=16mm, angle=90, origin=c]{\string ~/Pictures/common_figures/thickLeaf_magnolia.jpg}
+    };
+    \draw [<->] (-SLA 1) to node [trait label] {Specific leaf\\area} (-SLA 2);
+  },
+  trait ll/.pic = {
+    \node[trait pic] (-LL 1) {
+      \includegraphics[height=16mm, angle=90, origin=c]{\string ~/Pictures/common_figures/pineNeedle.jpg}
+    };
+    \node[trait pic] (-LL 2) [right = of -LL 1] {
+      \includegraphics[width=16mm]{\string ~/Pictures/common_figures/mapleLeaf.jpg}
+    };
+    \draw [<->] (-LL 1) to node [trait label] {Leaf\\longevity} (-LL 2); 
+  },
+  trait N/.pic = {
+    \node [trait letter] (-N1) {
+      \Huge \textbf{\color{blue}N}
+    };
+    \node [trait letter] (-N2) [right = of -N1] {
+      \Huge \textbf{\color{blue!30!white}N}
+    };
+    \draw [<->] (-N1) to node [trait label] {Leaf N} (-N2);
+  },
+  trait P/.pic = {
+    \node [trait letter] (-P1) {
+      \Huge \textbf{\color{red}P}
+    };
+    \node [trait letter] (-P2) [right = of -P1] {
+      \Huge \textbf{\color{red!30!white}P}
+    };
+    \draw [<->] (-P1) to node [trait label] {Leaf P} (-P2);
+  },
+  trait Rd/.pic = {
+    \node [trait letter] (-Rd1) {
+      {\tiny \textbf{CO}$_{2}$}
+    };
+    \node [trait letter] (-Rd2) [right = of -Rd1] {
+      {\Large \textbf{CO}$_{2}$}
+    };
+    \draw [<->] (-Rd1) to node [trait label] {Dark\\respiration} (-Rd2);
+  },
+  trait Vcmax/.pic = {
+    \node[
+    draw, 
+    shape = circle,
+    outer sep = 5pt,
+    decoration = {markings, mark=at position 0.5 with{\arrow{>}}},
+    postaction = {decorate}
+    ] (-vcmax1) 
+    {\tiny Rubisco};
+    \node[
+    draw,
+    very thick,
+    shape = circle,
+    outer sep = 5pt,
+    decoration = {markings, mark=at position 0.5 with{\arrow{>}}},
+    postaction = {decorate}
+    ] (-vcmax2) [right = of -vcmax1] 
+    {\tiny \bf Rubisco};
+    \draw [<->] (-vcmax1) to node [trait label] {$V_{c,max}$} (-vcmax2);
+  },
+  trait Jmax/.pic = {
+    \node [trait letter] (-Jmax1) {
+      {\tiny $e^-$}
+    };
+    \node [trait letter] (-Jmax2) [right = of -Jmax1] {
+      {\Large $e^-$}
+    };
+    \draw [<->] (-Jmax1) to node [trait label] {\small $J_{max}$} (-Jmax2);
+  }
+}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End:

@@ -1,0 +1,46 @@
+#+TITLE: Dissertation defense notes
+#+AUTHOR: Alexey Shiklomanov
+
+* Timings
+  - Dietze lab run (Thursday, 24 May 2018) -- ~25 minutes (but blew through chapter 1)
+    
+* Comments to address [0/4]
+** TODO Misc [1/5]
+- [X] Fix date in title
+- [ ] Within-species variance plot (currently slide 25)
+  - [ ] Species in "within-species variance plot" are *late successional*, not early
+  - [ ] Shade box plots, or use ridge plots, or something. Make the visual better.
+- [ ] Flesh out the outline -- highlight that first two sections are /parameteric/ uncertainty and the last one focuses more on /structural/.
+  - Maybe consider using Anthony Walker's model-data feedback figure ([[http://dx.doi.org/10.1002/2013JG002553][link]])
+- [ ] Proper conclusions slide
+- [ ] Proper acknowledgments slide
+** TODO Chapter 1 [/]
+- [ ] Make sure constraint figure is up to date
+** TODO *Chapter 2/3* [0/6]
+- [ ] Circle missing areas in trait map
+- [ ] For all experiments, make it clear that I did the analyses
+  - Subtle changes to the references ought to do it
+- [ ] Drop the overall treatment effects figure
+- [ ] Start treatment section with an overview of all the treatments (e.g. lots of pretty pictures) -- "Don't have time to go into all of them, but across a wide range of damage types, spectra were able to not only detect physiological stress, but also to ascribe it some physiological explanation." Then get into each treatment individually.
+- [ ] Add photos to each treatment.
+- [ ] Correlation within species figure -- use a ridge plot, or some other summary statistic
+- [ ] Correlation across species figure -- subset to just optical vs. other traits.
+  - Keep the main take-home in mind -- structural traits are less plastic than pigments.
+  - Consider re-arranging the traits to highlight this -- group pigments and structural traits together
+- [ ] Add validation figure as supplementary slide
+** TODO *Chapter 4* [0/5]
+- [ ] Big picture -- focus more on the calibration
+- [ ] Add 1-2 slides -- going from leaf to stand, there are additional challenges. Have to also calibrate structural traits. Used the same techniques as at the leaf level.
+- [ ] Stress that this is all /novel/ -- nobody else has really done this before
+- [ ] Start out with the vision -- constraining ecosystem models using remote sensing
+  - First sections were about parameter uncertainty. Now, moving on to structural/process uncertainty.
+  - Need to calibrate models, since not everything is a parameter
+  - We found structural errors along the way...but that itself tells us something useful
+  - Different classes of RTMs between ecosystem models and remote sensing. Even when the underlying theory seems like it should be pretty similar, the results are different.
+  - Again, this is /novel/ because nobody's compared them yet.
+  - I found a bottleneck in realizing the vision of model-remote sensing integration -- the quality of the radiative transfer models.
+  - Errors are not just parameteric, but also structural.
+- [ ] Future direction -- time series
+  - [ ] Redraw just the first two years
+  - Yes, there are issues, but this is moving in the right direction
+  - Despite the ED mortality, and some systematic differences, we do capture variability through time and across seasons.

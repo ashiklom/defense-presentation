@@ -1,0 +1,17 @@
+# LaTeX outputs
+*.aux
+*.dvi
+*.fdb_latexmk
+*.fls
+*.log
+*.nav
+*.out
+*.snm
+*.toc
+
+# Files from running a region
+_region_*
+
+*.pdf
+
+*~
