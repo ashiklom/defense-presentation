@@ -935,22 +935,16 @@ Improving ecological forecasts using data constraints}
 \end{frame}
 
 \begin{frame}
-  \makebox[\textwidth]{
+  \makebox[\textwidth][c]{
     \begin{tikzpicture}
-      \node [pic] (rtm) at (-3, 4.2) {
+      \node [pic] (forest) at (0, 0) {
+        \includegraphics[height = 1.6in]{\string ~/Pictures/common_figures/forest_light.jpg}
+      };
+      \node [pic, anchor = north, show = <2->] (rtm) at ([yshift = -2mm] forest.south) {
         \includegraphics[height=1.6in]{\string ~/Pictures/common_figures/fisher_2017_rtm.jpg}
       };
-      \node [align = center] at ([xshift=2cm] rtm.east) (rtm text) {Competition\\for light};
-      \node [pic, xshift = 20mm] at (0, 0) (water) {
-        \includegraphics[height=1.6in, clip, trim = {0 6cm 0 0}]{\string ~/Pictures/common_figures/fisher_2017_water.jpg}
-      };
-      \node [align = center] at ([xshift=-3.5cm] water.west) (water text) {Competition for water};
-      \node [fit = (rtm)(rtm text), draw = red, thick, show = <2->] {};
     \end{tikzpicture}
   }
-  % Two points:
-  % (1) Models represent processes differently
-  % (2) At some point, models become abstractions of reality. No real-life "traits" to measure.
 \end{frame}
 
 \begin{frame}
@@ -959,6 +953,55 @@ Improving ecological forecasts using data constraints}
       \node [pic] (cycle) {
         \includegraphics[height=3.2in, trim = {0 0 45mm 0}, clip]{\string ~/Pictures/common_figures/dietze_forcast_cycle.jpg}
       };
+    \end{tikzpicture}
+  }
+\end{frame}
+
+\begin{frame}
+  \frametitle{Remote sensing fills in the spatial gaps in ground-based
+    measurements}
+  \begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{\string ~/Pictures/common_figures/schimel_gcb2014_figure1.jpg}
+  \end{figure}
+  \hfill {\tiny Schimel et al. 2014 GCB}
+\end{frame}
+
+\begin{frame}
+  \makebox[\textwidth][c]{
+    \begin{tikzpicture}
+      \node (observation) at (0, 4) {Remote sensing measurement};
+      \node (product) at (2, 4) {Leaf area index};
+      \node (model) at (4, 0) {Model};
+      \node (model lai) at (2, 0) {Leaf area index};
+      \node (model spectra) at (0, 0) {Modeled spectra};
+      \path [->] (observation) edge node [above] {model} (product);
+      \path [<->] (product) edge node {} (model lai);
+      \path [->] (model) edge node {} (model lai);
+      \path [->, bend left] (model) edge node {} (model spectra);
+    \end{tikzpicture}
+  }
+\end{frame}
+
+\begin{frame}
+  \frametitle{Scaling from leaf to canopy requires canopy structural parameters}
+  \makebox[\textwidth][c]{
+    \begin{tikzpicture}[title/.style = {anchor = north, align = center}]
+      \node [pic] (lai) at (5, 4) {
+        \includegraphics[height = 25mm]{\string ~/Pictures/common_figures/lai_conceptual.png}
+      };
+      \node [title] at ([xshift=-5mm] lai.south) {Leaf area index};
+      \node [pic] (clumping closed) at (0, 0) {
+        \includegraphics[height = 30mm]{\string ~/Pictures/common_figures/canopy_hemiphoto_closed.jpg}
+      };
+      \node [pic, anchor = west] (clumping open) at (clumping closed.east) {
+        \includegraphics[height = 30mm]{\string ~/Pictures/common_figures/clumped_canopy.png}
+      };
+      \node [title] at ($(clumping closed.south)!0.5!(clumping open.south)$) {Canopy clumping};
+      \node [pic] (leaf angle) at (8, 0) {
+        \includegraphics[height = 23mm, clip, trim = {0 5mm 0 0}]{\string ~/Pictures/common_figures/leaf_angle_conceptual.png}
+      };
+      \node [title] at (leaf angle.south) {Leaf angle distribution};
     \end{tikzpicture}
   }
 \end{frame}
