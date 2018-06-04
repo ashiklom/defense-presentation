@@ -969,39 +969,26 @@ Improving ecological forecasts using data constraints}
 
 \begin{frame}
   \makebox[\textwidth][c]{
-    \begin{tikzpicture}
-      \node (observation) at (0, 4) {Remote sensing measurement};
-      \node (product) at (2, 4) {Leaf area index};
-      \node (model) at (4, 0) {Model};
-      \node (model lai) at (2, 0) {Leaf area index};
-      \node (model spectra) at (0, 0) {Modeled spectra};
-      \path [->] (observation) edge node [above] {model} (product);
-      \path [<->] (product) edge node {} (model lai);
-      \path [->] (model) edge node {} (model lai);
-      \path [->, bend left] (model) edge node {} (model spectra);
-    \end{tikzpicture}
-  }
-\end{frame}
-
-\begin{frame}
-  \frametitle{Scaling from leaf to canopy requires canopy structural parameters}
-  \makebox[\textwidth][c]{
-    \begin{tikzpicture}[title/.style = {anchor = north, align = center}]
-      \node [pic] (lai) at (5, 4) {
-        \includegraphics[height = 25mm]{\string ~/Pictures/common_figures/lai_conceptual.png}
+    \begin{tikzpicture}[
+      mytext/.style = {text width = 2cm, align = center},
+      compare/.style = {<->, dashed}
+      ]
+      \node (observation) at (0, 4) {
+        \includegraphics[height=35mm]{\string ~/Projects/nasa-rtm/nasa_ef_2018/figures/edr_simple_simulations.png}
       };
-      \node [title] at ([xshift=-5mm] lai.south) {Leaf area index};
-      \node [pic] (clumping closed) at (0, 0) {
-        \includegraphics[height = 30mm]{\string ~/Pictures/common_figures/canopy_hemiphoto_closed.jpg}
+      \node [mytext, show = <2-3>] (product) at (4, 4) {Leaf area index};
+      \node (model) at (8, 0) {
+        \includegraphics[width=35mm]{\string ~/Pictures/common_figures/ED2_colored.png}
       };
-      \node [pic, anchor = west] (clumping open) at (clumping closed.east) {
-        \includegraphics[height = 30mm]{\string ~/Pictures/common_figures/clumped_canopy.png}
+      \node [mytext, show = <2->] (model lai) at (4, 0) {Leaf area index};
+      \node [show = <4->] (model spectra) at (0, 0) {
+        \includegraphics[height=35mm]{\string ~/Projects/nasa-rtm/nasa_ef_2018/figures/edr_simple_simulations.png}
       };
-      \node [title] at ($(clumping closed.south)!0.5!(clumping open.south)$) {Canopy clumping};
-      \node [pic] (leaf angle) at (8, 0) {
-        \includegraphics[height = 23mm, clip, trim = {0 5mm 0 0}]{\string ~/Pictures/common_figures/leaf_angle_conceptual.png}
-      };
-      \node [title] at (leaf angle.south) {Leaf angle distribution};
+      \path [->, show = <2-3>] (observation) edge node [above] {model} (product);
+      \path [compare, show = <3>] (product) edge node {} (model lai);
+      \path [->, show = <2->] (model) edge node {} (model lai);
+      \path [->, bend left, show = <4->] (model) edge node {} (model spectra);
+      \path [compare, bend right, show = <5->] (observation.west) edge node {} (model spectra.west);
     \end{tikzpicture}
   }
 \end{frame}
@@ -1053,6 +1040,29 @@ Improving ecological forecasts using data constraints}
 \end{frame}
 
 \begin{frame}
+  \frametitle{Scaling from leaf to canopy involves canopy structural parameters that need to be calibrated.}
+  \makebox[\textwidth][c]{
+    \begin{tikzpicture}[title/.style = {anchor = north, align = center}]
+      \node [pic, show = <2->] (lai) at (5, 4) {
+        \includegraphics[height = 25mm]{\string ~/Pictures/common_figures/lai_conceptual.png}
+      };
+      \node [title, show = <2->] at ([xshift=-5mm] lai.south) {Leaf area index};
+      \node [pic, show = <3->] (clumping closed) at (0, 0) {
+        \includegraphics[height = 30mm]{\string ~/Pictures/common_figures/canopy_hemiphoto_closed.jpg}
+      };
+      \node [pic, anchor = west, show = <3->] (clumping open) at (clumping closed.east) {
+        \includegraphics[height = 30mm]{\string ~/Pictures/common_figures/clumped_canopy.png}
+      };
+      \node [title, show = <3->] at ($(clumping closed.south)!0.5!(clumping open.south)$) {Canopy clumping};
+      \node [pic, show = <4->] (leaf angle) at (8, 0) {
+        \includegraphics[height = 23mm, clip, trim = {0 5mm 0 0}]{\string ~/Pictures/common_figures/leaf_angle_conceptual.png}
+      };
+      \node [title, show = <4->] at (leaf angle.south) {Leaf angle distribution};
+    \end{tikzpicture}
+  }
+\end{frame}
+
+\begin{frame}
   \begin{figure}
     \centering
     \includegraphics[height=\textheight]{\string ~/Projects/dissertation/draft/4_edr/figures/sites_both.pdf}
@@ -1066,7 +1076,7 @@ Improving ecological forecasts using data constraints}
   \end{itemize}
 \end{frame}
 
-\againframe<4>{ch4_questions}
+% \againframe<4>{ch4_questions}
 
 % Some sites, we nail the spectra and the LAI...
 \begin{frame}
@@ -1114,6 +1124,22 @@ Improving ecological forecasts using data constraints}
   }
 \end{frame}
 
+\begin{frame}
+  \makebox[\textwidth][c]{
+    \begin{tikzpicture}
+      \node [pic] (figure) at (0, 0) {
+        \includegraphics[width=3.2in]{\string ~/Projects/nasa-rtm/edr-da/figures/explore_spectra/sensitivity_single_pft.pdf}
+      };
+      \node [anchor = north, align = left, text width = 4.5in, show = <3->] at (figure.south) {
+        EDR sensitivity to all structural parameters is similar,
+        making them hard to distinguish from spectra alone.
+      };
+      \draw [red, ultra thick, show = <2->] (-4, 4) rectangle (-0.3, -1.3);
+      \draw [red, ultra thick, show = <2->] (-4, -1.3) rectangle (2.8, -4);
+    \end{tikzpicture}
+  }
+\end{frame}
+
 \begin{frame}{\textbf{Future direction}: Using remote sensing time series to evaluate model dynamics}
   \begin{figure}
     \centering
@@ -1123,20 +1149,117 @@ Improving ecological forecasts using data constraints}
 
 \begin{frame} \frametitle{Takeaways}
   \begin{itemize}
-  \item ED2 radiative transfer has several problems\ldots
+  \item<2-> Calibrating canopy radiative transfer models is hard\ldots
     \begin{itemize}
-    \item Wood reflectance is wrong
-    \item Ill-posedness of structural parameters
-    \item Excessive sensitivity to soil background
+    \item<3-> Different structural parameters influence spectra in similar ways
+      (i.e., canopy RTM inversion can be ill-posed)
+    \item<4-> Structural parameters vary within plant functional types
     \end{itemize}
-  \item \ldots but comparison against remote sensing data is a promising approach.
+  \item<5-> \ldots but comparison against remote sensing data is a promising approach.
   \end{itemize}
 \end{frame}
 
 \section{Conclusions}
 
-\begin{frame} \frametitle{Conclusions}
-  Modeling is hard.
+\begin{frame}
+  \frametitle{Summary}
+  \makebox[\textwidth][c]{
+    \begin{tikzpicture}[
+      my text/.style = {anchor = north, font = \small}
+      ]
+      \node [pic] (cycle) {
+        \includegraphics[height=2.8in, trim = {0 0 45mm 5mm}, clip]{\string ~/Pictures/common_figures/dietze_forcast_cycle.jpg}
+      };
+      \begin{scope}[show = <2->]
+        \draw [ultra thick, red] (-4.3, -3.6) rectangle (-2.3, -2.6);
+        \node [my text, red] (ch1) at (-4, -3.7) {Trait meta-analysis};
+      \end{scope}
+      \node [my text, show = <3->, red] (ch2) at (-1, -3.7) {Leaf reflectance};
+      \begin{scope}[show = <4->]
+        \draw [ultra thick, blue] (-1.7, -3.3) rectangle (4.5, 3.5);
+        \node [my text, blue] (ch3) at (3.5, -3.7) {Remote sensing};
+      \end{scope}
+    \end{tikzpicture}
+  }
+\end{frame}
+
+\begin{frame}
+  \makebox[\textwidth][c]{
+    \begin{tikzpicture}[
+      every label/.style = {font = \footnotesize, text width = 20mm, align = center}
+      ]
+      \node (thanks) at (-6.0, 7.0) {\Large Thanks to...};
+      \matrix [show = <2->] (committee)
+      at (0, 6) {
+        \node [pic, label = {Diane Thompson}] (diane) {
+          \includegraphics[height=17mm]{pictures/diane_thompson.jpg}
+        }; \&
+        \node [pic, label = {Mark Friedl}] (mark) {
+          \includegraphics[height=17mm]{pictures/mark_friedl.jpg}
+        }; \&
+        \node [pic, label = {Curtis Woodcock}] (curtis) {
+          \includegraphics[height=17mm]{pictures/curtis_woodcock.jpg}
+        }; \& 
+        \node [pic, label = {Shawn Serbin}] (shawn) {
+          \includegraphics[height=17mm]{pictures/shawn_serbin.jpg}
+        }; \\
+      };
+      \node [label = {[text width = 50mm, show = <3->]Drew, Radost, Betsy, and Paulo}, show = <3->] (grad students)
+      at (-3.2, 2.7) {
+        \includegraphics[height=25mm]{pictures/grad_students.jpg}
+      }; \&
+      % % Dietze Lab
+      \matrix [label = {[show = <4->]Dietze Lab}, show = <4->] (dietze lab)
+      at (2.1, 2.5) {
+        \node [pic] (istem) {
+          \includegraphics[height=15mm]{pictures/istem_fer.jpg}
+        }; \&
+        \node [pic] (colin) {
+          \includegraphics[height=15mm]{pictures/colin_averill.jpg}
+        }; \&
+        \node [pic] (tony) {
+          \includegraphics[height=15mm]{pictures/tony_gardella.jpg}
+        }; \&
+        \node [pic] (toni) {
+          \includegraphics[height=15mm, clip, trim = {75mm 0 0 0}]{pictures/toni_viskari.jpg}
+        }; \\
+        \node [pic] (kathryn) {
+          \includegraphics[height=15mm]{pictures/kathryn_wheeler.jpg}
+        }; \&
+        \node [pic] (tess) {
+          \includegraphics[height=15mm]{pictures/tess_mccabe.jpg}
+        }; \&
+        \node [pic] (john) {
+          \includegraphics[height=15mm]{pictures/john_foster.jpg}
+        }; \&
+        \node [pic] (ann) {
+          \includegraphics[height=15mm]{pictures/ann_raiho.jpg}
+        }; \\
+      };
+      \matrix [label = {[text width = 30mm, show = <5->] Zanne Lab (GWU)}, show = <5->] (zanne lab)
+      at (2, -0.5) {
+        % Zanne Lab
+        \node [pic] (amy zanne) {
+          \includegraphics[height=15mm]{pictures/amy_zanne.jpg}
+        }; \&
+        \node [pic] (amy milo) {
+          \includegraphics[height=15mm]{pictures/amy_milo.jpg}
+        }; \&
+        \node [pic] (marissa lee) {
+          \includegraphics[height=15mm, clip, trim = {40mm 40mm 10mm 10mm}]{pictures/marissa_lee.jpg}
+        }; \\
+      };
+      \node [pic, label = {[text width = 20mm, show = <6->] Mike Dietze}, show = <6->] (mike) at (-5.7, -0.2) {
+        \includegraphics[height=20mm]{pictures/mike_dietze.jpg}
+      };
+      \node [pic, label = {[text width = 30mm, show = <7->] Shiklomanov family}, show = <7->] (family) at (-2.6, -0.2) {
+        \includegraphics[height=20mm, clip, trim = {10mm 20mm 80mm 60mm}]{pictures/family.jpg}
+      };
+      \node [pic, label = {[show = <8->]Sarah Weiskopf}, show = <8->] (sarah) at (-6.5, 3.6) {
+        \includegraphics[height=40mm, clip, trim = {45mm 120mm 52mm 40mm}]{pictures/sarah.jpg}
+      };
+    \end{tikzpicture}
+  }
 \end{frame}
 
 \end{document}
